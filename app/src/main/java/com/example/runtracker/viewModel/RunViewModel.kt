@@ -40,7 +40,7 @@ class RunViewModel(application: Application) : ViewModel() {
         }
     }
 
-    fun deleteSubject(id: Int){
+    fun deleteRun(id: Int){
         viewModelScope.launch {
             repository.delete(id)
         }

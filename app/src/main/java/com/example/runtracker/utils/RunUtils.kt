@@ -1,5 +1,8 @@
 package com.example.runtracker.utils
 
+import com.google.android.gms.maps.model.LatLng
+import com.google.maps.android.SphericalUtil
+
 fun Long.formatTime(): String {
     val hours = this / 3600
     val minutes = (this % 3600) / 60
@@ -21,4 +24,13 @@ fun Int.formatDistance(): String{
         val meters = (this % 1000) / 10;
         String.format("%d.%02d km", kilo, meters)
     }
+}
+
+fun calculateDistance(traceList: MutableList<LatLng>): Int{
+    var dist = 0.0
+    for(i in 1..<traceList.size)
+    {
+        dist += SphericalUtil.computeDistanceBetween(traceList[i-1], traceList[i])
+    }
+    return dist.toInt()
 }

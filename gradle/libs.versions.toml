@@ -1,6 +1,7 @@
 [versions]
 accompanistPermissions = "0.24.13-rc"
 agp = "8.3.2"
+androidMapsUtilsVersion = "0.6.2"
 gson = "2.10.1"
 kotlin = "1.9.0"
 coreKtx = "1.12.0"
@@ -23,11 +24,13 @@ roomKtx = "2.6.1"
 secretsGradlePlugin = "2.0.1"
 transportRuntime = "3.3.0"
 lifecycleRuntimeCompose = "2.7.0"
+graphicsShapesAndroid = "1.0.0-beta01"
 
 [libraries]
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
+google-android-maps-utils = { module = "com.google.maps.android:android-maps-utils", version.ref = "androidMapsUtilsVersion" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -54,6 +57,7 @@ play-services-maps-v1810 = { module = "com.google.android.gms:play-services-maps
 secrets-gradle-plugin = { module = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin", version.ref = "secretsGradlePlugin" }
 transport-runtime = { group = "com.google.android.datatransport", name = "transport-runtime", version.ref = "transportRuntime" }
 androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycleRuntimeCompose" }
+androidx-graphics-shapes-android = { group = "androidx.graphics", name = "graphics-shapes-android", version.ref = "graphicsShapesAndroid" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

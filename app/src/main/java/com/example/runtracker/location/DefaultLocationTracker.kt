@@ -15,7 +15,7 @@ class DefaultLocationTracker(callback: LocationCallback, client: FusedLocationPr
     override suspend fun startLocationUpdates() {
         locationCallback?.let {
             val locationRequest = LocationRequest.Builder(
-                Priority.PRIORITY_HIGH_ACCURACY, 500
+                Priority.PRIORITY_HIGH_ACCURACY, 1000
             )
                 .setWaitForAccurateLocation(false)
                 .setMinUpdateIntervalMillis(3000)

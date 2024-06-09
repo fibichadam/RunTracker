@@ -34,6 +34,7 @@ import androidx.navigation.NavHostController
 import com.example.runtracker.data.Run
 import com.example.runtracker.data.Trace
 import com.example.runtracker.location.DefaultLocationTracker
+import com.example.runtracker.utils.calculateDistance
 import com.example.runtracker.utils.formatTime
 import com.example.runtracker.viewModel.RunViewModel
 import com.example.runtracker.viewModel.TimerViewModel
@@ -50,10 +51,11 @@ import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
 import java.util.Calendar
 
+val traceList: MutableList<LatLng> = mutableListOf()
+
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun MainScreen(navCon: NavHostController, viewModel: RunViewModel) {
-    val traceList: MutableList<LatLng> = mutableListOf()
 
     var startedTimer: Boolean by remember {
         mutableStateOf(false)
@@ -86,6 +88,7 @@ fun MainScreen(navCon: NavHostController, viewModel: RunViewModel) {
 
                 if(startedTimer) {
                     traceList.add(currentLocation)
+                    Log.i("size=", traceList.size.toString())
                 }
             }
         }
@@ -144,7 +147,6 @@ fun MainScreen(navCon: NavHostController, viewModel: RunViewModel) {
                 onClick = {
                     if(!startedTimer)
                     {
-                        Log.i("info", "Started")
                         traceList.clear()
                         timerViewModel.stopTimer()
                         timerViewModel.startTimer()
@@ -152,24 +154,25 @@ fun MainScreen(navCon: NavHostController, viewModel: RunViewModel) {
                     }
                     else
                     {
+                        timerViewModel.pauseTimer()
                         viewModel.addRun(Run(
                             date = Calendar.getInstance().time.time,
-                            distance = 1789,
+                            distance = calculateDistance(traceList),
                             time = timerViewModel.timer.value,
-                            trace = Trace(traceList)
+                            trace = Trace(traceList.toList())
                         ))
-                        timerViewModel.pauseTimer()
                         buttonText = "Start"
                     }
                     startedTimer = !startedTimer
                 },
-                border = BorderStroke(2.dp, Color.hsv(197f, .7f, 1f)),
+                border = BorderStroke(2.dp, Color(255,200,100)),
                 shape = RoundedCornerShape(50),
-                colors = ButtonDefaults.outlinedButtonColors(containerColor = Color.White),
+                colors = ButtonDefaults.outlinedButtonColors(containerColor = Color(255,200,100,100)),
             ) {
-                Text( text = buttonText, fontSize = TextUnit(30f, TextUnitType.Sp))
+                Text( text = buttonText, fontSize = TextUnit(30f, TextUnitType.Sp), color = Color.Black)
             }
         }
         Row(modifier = Modifier.weight(0.1f)){}
     }
 }
+

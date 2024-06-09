@@ -82,6 +82,8 @@ dependencies {
     implementation(libs.transport.runtime)
     implementation(libs.gson)
     implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.google.android.maps.utils)
+    implementation(libs.androidx.graphics.shapes.android)
     ksp(libs.androidx.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
